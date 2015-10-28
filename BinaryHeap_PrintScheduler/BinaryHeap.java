@@ -81,7 +81,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>>
      * Find the smallest item in the priority queue.
      * @return the smallest item, or throw an UnderflowException if empty.
      */
-    public AnyType findMin( )
+    public AnyType findMax( )
     {
         //if( isEmpty( ) )
             //throw new UnderflowException( );
@@ -92,12 +92,12 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>>
      * Remove the smallest item from the priority queue.
      * @return the smallest item, or throw an UnderflowException if empty.
      */
-    public AnyType deleteMin( )
+    public AnyType deleteMax( )
     {
         //if( isEmpty( ) )
             //throw new UnderflowException( );
 
-        AnyType minItem = findMin( );
+        AnyType minItem = findMax( );
         array[ 1 ] = array[ currentSize-- ];
         percolateDown( 1 );
 
@@ -169,7 +169,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>>
         for( i = 37; i != 0; i = ( i + 37 ) % numItems )
             h.insert( i );
         for( i = 1; i < numItems; i++ )
-            if( h.deleteMin( ) != i )
+            if( h.deleteMax( ) != i )
                 System.out.println( "Oops! " + i );
     }
 }

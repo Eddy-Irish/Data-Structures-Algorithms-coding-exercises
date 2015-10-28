@@ -8,47 +8,88 @@ import java.util.ArrayList;
 
 public class PrintScheduler  {
 
-   public static void main(String[] args)   {
+   private BinaryHeap<PrintRequest> heap;
    
-      
-      BinaryHeap heap = new BinaryHeap(10);
-//       heap.insert(1);
-//       System.out.println(heap.findMin());
-//       heap.insert(2);
-//       System.out.println(heap.findMin());
-//       heap.insert(5);
-//       System.out.println(heap.findMin());
-//       heap.insert(7);
-//       System.out.println(heap.findMin());
-//       heap.deleteMin();
-//       System.out.println(heap.findMin());
+      public PrintScheduler()  {
+         heap = new BinaryHeap<>();
+      }
 
-      PrintRequest print1 = new PrintRequest("keohara", 10, 1000, 0);
-      System.out.println(print1.getID());
-      System.out.println(print1.getID());
-      PrintRequest print2 = new PrintRequest("joBLow", 10, 1000, 0);
-      System.out.println(print2.getID());
-      System.out.println(print2);
-      if (print1.compareTo(print2) < 0 )  {
-         System.out.println("YES");   }
+      public int add(String login, String time, int priority, int size, int handle) {
+         PrintRequest print = new PrintRequest(login, time, priority, size, handle);
+         heap.insert(print);
          
+         if (heap.isEmpty()) {
+            return -2;   }
+         else {
+            return print.getID(); }
+      }
+      
+      public int print_next()  {
+         if (heap.isEmpty())  {
+            return -2;   }
+         else {
+            return heap.deleteMax().getID();   }
+      }
+      
+       //
+       public int find_next()  {
+         if (heap.isEmpty())  {
+            return -2;   }
+         else {
+            return heap.findMax().getID();   }
+      }
+      
+      
+      public int cancel(String deleteLogin)  {
+         BinaryHeap<PrintRequest> temp = new BinaryHeap<>();
+         int deleteCount = 0;
+         while (!heap.isEmpty()) {
+            if (heap.findMax().getLogin().equals(deleteLogin)) {
+               heap.deleteMax();
+               deleteCount++;    }
+            else  {
+               temp.insert(heap.deleteMax());  }
+         }
+         heap = temp;
+         return deleteCount;
+      }
       
       
       
-     //  public static int add(String login, String time, int priority, int size, int handle) {
-//          heap.insert(priority);
-//          PrintRequest print = new PrintRequest(login, time, priority, size, handle);
-//          
-//          if (heap.isEmpty()) {
-//             return -2;  }
-//          else  {
-//             return 
+      public int cancel(int deleteID)  {
+         BinaryHeap<PrintRequest> temp = new BinaryHeap<>();
+         int code = -3;
+         while (!heap.isEmpty()) {
+            if (heap.findMax().getID() == deleteID) {
+               heap.deleteMax(); 
+               code = 0;   }
+            else  {
+               temp.insert(heap.deleteMax());  }
+         }
+         heap = temp;
+         return code;
+      }
+      
+      
+      public int status()  {
+         BinaryHeap<PrintRequest> temp = new BinaryHeap<>();
+         if (heap.isEmpty()) {
+            return -2;   }
+         while (!heap.isEmpty()) {
+            System.out.println(heap.findMax().toString());
+            temp.insert(heap.deleteMax());   }
+        
+         heap = temp;
+         
+          return -3;
+       }
 
-
-
+          
 
 
    }
-}
+
+
+
    
       

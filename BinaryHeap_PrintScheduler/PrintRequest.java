@@ -15,12 +15,13 @@ public class PrintRequest implements Comparable<PrintRequest>  {
    
    private int ID;
    private String login;
+   private String time;
    private int priority;
    private int size;
    private int handle;
    
    //Constructor
-   public PrintRequest(String log, int pri, int sz, int handy)  {
+   public PrintRequest(String log, String time, int pri, int sz, int handy)  {
       this.login = log;
       this.priority = pri;
       this.size = sz;
@@ -31,12 +32,13 @@ public class PrintRequest implements Comparable<PrintRequest>  {
    //Gettor methods
    public int getID()         {  return ID;   }
    public String getLogin()   {  return login;}
+   public String getTime()    {  return time;  }
    public int getPriority()   {  return priority;   }
    public int getSize()       { return size; }
    public int getHandle()     { return handle;  }
    
    public String toString()  {
-      String str = ("" + ID + "");
+      String str = ("" + ID + " " + login + " " + time + " " + priority + " " + size + " " + handle);
       return str;
    }
    
