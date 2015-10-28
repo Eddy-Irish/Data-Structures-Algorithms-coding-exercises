@@ -28,6 +28,23 @@ public class PrintRequest  {
       this.ID = instanceCount.get();
    }
    
+   //Gettor methods
    public int getID()         {  return ID;   }
    public String getLogin()   {  return login;}
+   public int getPriority()   {  return priority;   }
+   public int getSize()       { return size; }
+   public int getHandle()     { return handle;  }
+   
+   public String toString()  {
+      String str = ("" + ID + "");
+      return str;
+   }
+   
+   public int compareTo(PrintRequest other)  {
+      if (this.ID < other.getID()) {
+         return -1;   }
+      else  {
+         return 1;   }
+   }
+   
 } 
