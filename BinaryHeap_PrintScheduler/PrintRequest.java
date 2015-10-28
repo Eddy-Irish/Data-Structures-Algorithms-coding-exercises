@@ -5,7 +5,7 @@
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class PrintRequest  {
+public class PrintRequest implements Comparable<PrintRequest>  {
 
    static private final AtomicInteger instanceCount = new AtomicInteger();
    
@@ -24,7 +24,7 @@ public class PrintRequest  {
       this.login = log;
       this.priority = pri;
       this.size = sz;
-      this.handle = handy;
+      this.handle = 0;
       this.ID = instanceCount.get();
    }
    
@@ -41,8 +41,10 @@ public class PrintRequest  {
    }
    
    public int compareTo(PrintRequest other)  {
-      if (this.ID < other.getID()) {
+      if (this.priority < other.getPriority()) {
          return -1;   }
+      if (this.priority == other.getPriority()) {
+         return 0;    }
       else  {
          return 1;   }
    }
