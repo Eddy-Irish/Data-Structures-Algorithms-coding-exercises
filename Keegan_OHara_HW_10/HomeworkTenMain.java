@@ -12,6 +12,8 @@ public class HomeworkTenMain {
    
    public static void main(String [] args) throws IOException {
    
+      // Declare the Arrays....regular arrays are used here because we
+      //   know the size of them.
       Integer [] tenArray;
       Integer [] hundredArray;
       Integer [] thousandArray;     
@@ -20,8 +22,62 @@ public class HomeworkTenMain {
       Integer [] millionArray;
 
    
-      // Initialize the ArrayList objects to hold the integers from the files
+      // load up the arrays from the given files
       tenArray = loadArray("random_numbers/r_10.out");
+      hundredArray = loadArray("random_numbers/r_100.out");
+      thousandArray = loadArray("random_numbers/r_1k.out");
+      tenKArray = loadArray("random_numbers/r_10k.out");
+      hundredKArray = loadArray("random_numbers/r_100k.out");
+      millionArray = loadArray("random_numbers/r_1m.out");
+      
+      //time variables
+      long begin, end, elapsed;
+      
+      begin = System.nanoTime();
+      Sort.insertionSort(tenArray);
+      end = System.nanoTime();
+      elapsed = (end - begin);
+      System.out.println("Time for insertion, 10 items : " + elapsed + "\n");
+      
+      begin = System.nanoTime();
+      Sort.insertionSort(hundredArray);
+      end = System.nanoTime();
+      elapsed = ((end - begin) / 1000000000);
+      System.out.println("Time for insertion, 100 items : " + elapsed + "\n");
+      
+      begin = System.nanoTime();
+      Sort.insertionSort(thousandArray);
+      end = System.nanoTime();
+      elapsed = ((end - begin) / 1000000000);
+      System.out.println("Time for insertion, 1k items : " + elapsed + "\n");
+      
+      begin = System.nanoTime();
+      Sort.insertionSort(tenKArray);
+      end = System.nanoTime();
+      elapsed = ((end - begin) / 1000000000);
+      System.out.println("Time for insertion, 10k items : " + elapsed + "\n");
+      
+      begin = System.nanoTime();
+      Sort.insertionSort(hundredKArray);
+      end = System.nanoTime();
+      elapsed = ((end - begin) / 1000000000);
+      System.out.println("Time for insertion, 100k items : " + elapsed + "\n");
+      
+     //  begin = System.nanoTime();
+      // Sort.insertionSort(millionArray);
+//       end = System.nanoTime();
+//       elapsed = ((end - begin) / 1000000000);
+//       System.out.println("Time for insertion, 1m items : " + elapsed + "\n");
+
+
+
+
+
+
+
+
+
+
       printArray(tenArray);
       
       radixSort(tenArray);
