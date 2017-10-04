@@ -1,6 +1,4 @@
 /** Keegan O'Hara
-    CS 124
-    Homework #2, question 2
     Program to evaluate prefix expressions */
     
 import java.io.*;
